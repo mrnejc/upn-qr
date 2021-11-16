@@ -74,20 +74,20 @@ app.get('/api/qrcode', async (req, res) => {
 
 
 
-${req.query.client_name}
-${req.query.client_address}
-${req.query.client_city}
+${String(req.query.client_name).toUpperCase()}
+${String(req.query.client_address).toUpperCase()}
+${String(req.query.client_city).toUpperCase()}
 ${req.query.amount}
 
 
-${req.query.purpose_code}
-${req.query.payment_purpose}
+${String(req.query.purpose_code).toUpperCase()}
+${String(req.query.payment_purpose).toUpperCase()}
 
 ${req.query.iban}
 ${req.query.reference}
-${req.query.issuer_name}
-${req.query.issuer_address}
-${req.query.issuer_city}`
+${String(req.query.issuer_name).toUpperCase()}
+${String(req.query.issuer_address).toUpperCase()}
+${String(req.query.issuer_city).toUpperCase()}`
 
     text = `${text}\n${text.length + 1}`
 
