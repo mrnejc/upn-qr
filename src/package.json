@@ -1,0 +1,15 @@
+{
+  "name": "upn-qr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://gitplac.si/aljaxus/upn-qr",
+  "author": "Aljaž S. <me@aljaxus.eu>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
