@@ -49,3 +49,10 @@ code {
 section div {
     padding-left: 25px;
 }
+
+.credits {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
