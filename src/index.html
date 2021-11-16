@@ -18,38 +18,38 @@
     </section>
     <section>
         <h1>Terms of usage</h1>
-        <p>Because <a href="https://www.upn-qr.si/" target="_blank">upn-qr.si</a> prohobits the generation and use of UPN-QR codes by any unapthorized party, you must be <a href="https://upn-qr.si/sl/izdajatelji">authorized</a> in order to use this application and publish the content that it generates.</p>
+        <p>Because Public Payments Administration <a href="https://www.gov.si/zbirke/storitve/vkljucitev-v-izdajanje-upn-s-kodo-qr/" target="_blank">prohibits</a> the generation and use of UPN-QR codes by any unapthorized party, you must be <a href="https://www.upn-qr.si/sl/registracija-izdajatelja">authorized</a> in order to use this application and publish the content that it generates.</p>
     </section>
     <section>
         <h1>API</h1>
-        <h4 id="api-qrcode"><a href="#api-qrcode">&#128279;</a> <code>/api/qrcode</code></h4>
+        <h4 id="api-qrcode"><a href="#api-qrcode">&#128279;</a> <code>GET /api/qrcode</code></h4>
         <p>Following the specification from official documentation - <a href="https://www.upn-qr.si/uploads/files/NavodilaZaProgramerjeUPNQR.pdf">NavodilaZaProgramerjeUPNQR.pdf</a>, section 4. - "Vsebina kode QR"</p>
         <br>
 
         <div>
             <b>Query parameters:</b>
-            <h5 id="api-qrcode-payer_name"><a href="#api-qrcode-payer_name">&#128279;</a> <code>payer_name</code></h5>
+            <h5 id="api-qrcode-client_name"><a href="#api-qrcode-client_name">&#128279;</a> <code>client_name</code></h5>
             <div>
                 Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code>
                 <br>
                 Demo: <a href="https://regex101.com/r/t9EaM3/1">regex101.com/r/t9EaM3/1</a>
             </div>
             
-            <h5 id="api-qrcode-payer_address"><a href="#api-qrcode-payer_address">&#128279;</a> <code>payer_address</code></h5>
+            <h5 id="api-qrcode-client_address"><a href="#api-qrcode-client_address">&#128279;</a> <code>client_address</code></h5>
             <div>
                 Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code>
                 <br>
                 Demo: <a href="https://regex101.com/r/JA4wmM/1">regex101.com/r/JA4wmM/1</a>
             </div>
             
-            <h5 id="api-qrcode-payer_city"><a href="#api-qrcode-payer_city">&#128279;</a> <code>payer_city</code></h5>
+            <h5 id="api-qrcode-client_city"><a href="#api-qrcode-client_city">&#128279;</a> <code>client_city</code></h5>
             <div>
                 Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code>
                 <br>
                 Demo: <a href="https://regex101.com/r/pK3oEm/1">regex101.com/r/5QMpTn/1</a>
             </div>
             
-            <h5 id="api-qrcode-payer_amount"><a href="#api-qrcode-payer_amount">&#128279;</a> <code>payer_amount</code></h5>
+            <h5 id="api-qrcode-amount"><a href="#api-qrcode-amount">&#128279;</a> <code>amount</code></h5>
             <div>
                 Regex: <code>^(?=.{11}$)[0]{1,11}[1-9]{0,11}$</code>
                 <br>
