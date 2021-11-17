@@ -39,81 +39,125 @@
             <p>Following the specification from official documentation - <a href="https://www.upn-qr.si/uploads/files/NavodilaZaProgramerjeUPNQR.pdf">NavodilaZaProgramerjeUPNQR.pdf</a>, section <code>4. Vsebina kode QR</code>.</p>
             <h5 id="api-qrcode-client_name"><a href="#api-qrcode-client_name">&#128279;</a> <code>client_name</code></h5>
             <div>
-                Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code>
+                <span>Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/t9EaM3/1">regex101.com/r/t9EaM3/1</a>
+                <span>Demo: <a href="https://regex101.com/r/t9EaM3/1">regex101.com/r/t9EaM3/1</a></span>
+                <br>
+                <span>Description: Name and surname of the client. Max length 33 characters including spaces and numbers.</span>
+                <br>
+                <span>Example: Peter Novak</span>
             </div>
             
             <h5 id="api-qrcode-client_address"><a href="#api-qrcode-client_address">&#128279;</a> <code>client_address</code></h5>
             <div>
-                Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code>
+                <span>Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/JA4wmM/1">regex101.com/r/JA4wmM/1</a>
+                <span>Demo: <a href="https://regex101.com/r/JA4wmM/1">regex101.com/r/JA4wmM/1</a></span>
+                <br>
+                <span>Description: Full client address in long form. Max length 33 characters including spaces and numbers.</span>
+                <br>
+                <span>Example: Ravna ulica 13 a</span>
             </div>
             
             <h5 id="api-qrcode-client_city"><a href="#api-qrcode-client_city">&#128279;</a> <code>client_city</code></h5>
             <div>
-                Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code>
+                <span>Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/pK3oEm/1">regex101.com/r/5QMpTn/1</a>
+                <span>Demo: <a href="https://regex101.com/r/pK3oEm/1">regex101.com/r/5QMpTn/1</a></span>
+                <br>
+                <span>Description: Client's city including postal code</span>
+                <br>
+                <span>Example: 1000 Ljubljana</span>
             </div>
             
             <h5 id="api-qrcode-amount"><a href="#api-qrcode-amount">&#128279;</a> <code>amount</code></h5>
             <div>
-                Regex: <code>^(?=.{11}$)[0]{1,11}[0-9]{0,11}$</code>
+                <span>Regex: <code>^(?=.{11}$)[0]{1,11}[0-9]{0,11}$</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/Tyq5S1/1">regex101.com/r/Tyq5S1/1</a>
+                <span>Demo: <a href="https://regex101.com/r/Tyq5S1/1">regex101.com/r/Tyq5S1/1</a></span>
+                <br>
+                <span>Description: Total amount to pay. Must contain 11 numbers. Last two numbers are decimal places (cents).</span>
+                <br>
+                <span>Example (11,32€): 00000001132</span>
             </div>
             
             <h5 id="api-qrcode-purpose_code"><a href="#api-qrcode-purpose_code">&#128279;</a> <code>purpose_code</code></h5>
             <div>
-                Regex: <code>^[A-Z]{4}$</code>
+                <span>Regex: <code>^[A-Z]{4}$</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/TsiZQJ/1">regex101.com/r/TsiZQJ/1</a>
+                <span>Demo: <a href="https://regex101.com/r/TsiZQJ/1">regex101.com/r/TsiZQJ/1</a></span>
                 <br>
-                Default: OTHR
+                <span>Default: OTHR</span>
+                <br>
+                <span>Description: Must contain 4 uppercase characters compliant with public purpose code library <a href="https://www.nlb.si/sepa-koda-namena-prebivalstvo">www.nlb.si/sepa-koda-namena-prebivalstvo</a></span>
+                <br>
+                <span>Example: OTHR</span>
             </div>
             
             <h5 id="api-qrcode-payment_purpose"><a href="#api-qrcode-payment_purpose">&#128279;</a> <code>payment_purpose</code></h5>
             <div>
-                Regex: <code>^[A-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,40}[A-Z0-9ČŠŽĐ])?$</code>
+                <span>Regex: <code>^[A-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,40}[A-Z0-9ČŠŽĐ])?$</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/y7kUXP/1">regex101.com/r/y7kUXP/1</a>
+                <span>Demo: <a href="https://regex101.com/r/y7kUXP/1">regex101.com/r/y7kUXP/1</a></span>
+                <br>
+                <span>Description: A Can contain any character including ŠČŽĐ and space. Max length 33 characters including space.</span>
+                <br>
+                <span>Example: moutain bike first half</span>
             </div>
             
             <h5 id="api-qrcode-iban"><a href="#api-qrcode-iban">&#128279;</a> <code>iban</code></h5>
             <div>
-                Regex: <code>^[A-Z]{2}\d{17}$</code>
+                <span>Regex: <code>^[A-Z]{2}\d{17}$</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/8bXDvh/1">regex101.com/r/8bXDvh/1</a>
+                <span>Demo: <a href="https://regex101.com/r/8bXDvh/1">regex101.com/r/8bXDvh/1</a></span>
+                <br>
+                <span>Description: Must contain country code (exp. SI56). No spaces allowed. Max length 34 characters</span>
+                <br>
+                <span>Example: SI56047500000280672</span>
             </div>
             
             <h5 id="api-qrcode-reference"><a href="#api-qrcode-reference">&#128279;</a> <code>reference</code></h5>
             <div>
-                Regex: <code>^[A-Z]{2}[0-9\-]{1,24}$</code>
+                <span>Regex: <code>^[A-Z]{2}[0-9\-]{1,24}$</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/2tSYMw/1">regex101.com/r/2tSYMw/1</a>
+                <span>Demo: <a href="https://regex101.com/r/2tSYMw/1">regex101.com/r/2tSYMw/1</a></span>
+                <br>
+                <span>Description: Must contain reference model (exp. SI00) and reference (1234-2002). Max length 4+22 numbers and minus symbols. No spaces allowed.</span>
+                <br>
+                <span>Example: SI121234567890120</span>
             </div>
             
             <h5 id="api-qrcode-issuer_name"><a href="#api-qrcode-issuer_name">&#128279;</a> <code>issuer_name</code></h5>
             <div>
-                Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code>
+                <span>Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/DFjB0D/1">regex101.com/r/DFjB0D/1</a>
+                <span>Demo: <a href="https://regex101.com/r/DFjB0D/1">regex101.com/r/DFjB0D/1</a></span>
+                <br>
+                <span>Description: Name and surname of the issuer or company name. Max length 33 characters including spaces and numbers.</span>
+                <br>
+                <span>Example: Spletne strani na 123</span>
             </div>
             
             <h5 id="api-qrcode-issuer_address"><a href="#api-qrcode-issuer_address">&#128279;</a> <code>issuer_address</code></h5>
             <div>
-                Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code>
+                <span>Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/5oKk0T/1">regex101.com/r/5oKk0T/1</a>
+                <span>Demo: <a href="https://regex101.com/r/5oKk0T/1">regex101.com/r/5oKk0T/1</a></span>
+                <br>
+                <span>Description: Full issuer address in long form. Max length 33 characters including spaces and numbers.</span>
+                <br>
+                <span>Example: Za deveto smreko 15 k</span>
             </div>
             
             <h5 id="api-qrcode-issuer_city"><a href="#api-qrcode-issuer_city">&#128279;</a> <code>issuer_city</code></h5>
             <div>
-                Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code>
+                <span>Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code></span>
                 <br>
-                Demo: <a href="https://regex101.com/r/JfuNU1/1">regex101.com/r/JfuNU1/1</a>
+                <span>Demo: <a href="https://regex101.com/r/JfuNU1/1">regex101.com/r/JfuNU1/1</a></span>
+                <br>
+                <span>Description: Issuer city including postal code</span>
+                <br>
+                <span>Example: 1000 Ljubljana</span>
             </div>
             
             <!-- <h5><code>query</code></h5>
