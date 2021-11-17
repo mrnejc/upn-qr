@@ -23,11 +23,20 @@
     <section>
         <h1>API</h1>
         <h4 id="api-qrcode"><a href="#api-qrcode">&#128279;</a> <code>GET /api/qrcode</code></h4>
-        <p>Following the specification from official documentation - <a href="https://www.upn-qr.si/uploads/files/NavodilaZaProgramerjeUPNQR.pdf">NavodilaZaProgramerjeUPNQR.pdf</a>, section <code>4. Vsebina kode QR</code>.</p>
+        <div>
+            <span>Returns a <code>image/png</code> image if successful (OK 200), else returns the following JSON <code>{ ok: false, errors: String[] }</code> where <code>errors</code> is an array of descriptive strings.</span>
+            <br>
+            <pre>
+&#x3C;!-- Meant to be used as direct image source, for example --&#x3E;
+&#x3C;img src="https://upn-qr.gitapp.si/api/qrcode?client_name=Šolski center Nova Gorica&client_address=Cankarjeva ulica 8a&client_city=5000 Nova Gorica&amount=00000001000&payment_purpose=placilo&iban=SI56020170014356205&reference=SI121234567890120&issuer_name=Hitre Spletne Strani Na 123&issuer_address=Namisljena ulica 1a&issuer_city=1000 Ljubljana"&#x3E;
+            </pre>
+            <img src="/api/qrcode?client_name=Šolski center Nova Gorica&client_address=Cankarjeva ulica 8a&client_city=5000 Nova Gorica&amount=00000001000&payment_purpose=placilo&iban=SI56020170014356205&reference=SI121234567890120&issuer_name=Hitre Spletne Strani Na 123&issuer_address=Namisljena ulica 1a&issuer_city=1000 Ljubljana">
+        </div>
         <br>
-
+        
         <div>
             <b>Query parameters:</b>
+            <p>Following the specification from official documentation - <a href="https://www.upn-qr.si/uploads/files/NavodilaZaProgramerjeUPNQR.pdf">NavodilaZaProgramerjeUPNQR.pdf</a>, section <code>4. Vsebina kode QR</code>.</p>
             <h5 id="api-qrcode-client_name"><a href="#api-qrcode-client_name">&#128279;</a> <code>client_name</code></h5>
             <div>
                 Regex: <code>^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i</code>
