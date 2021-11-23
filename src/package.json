@@ -7,7 +7,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon -e js,ejs -w template -w views -w index.js index.js",
     "start": "node index.js"
   },
   "dependencies": {
