@@ -75,18 +75,28 @@ button {
     outline: solid 1px var(--c-accent);
     padding: 10px;
     vertical-align: top;
-    box-shadow: 3px 3px 1px 1px var(--c-accent);
+    box-shadow: 4px 4px 1px 1px var(--c-accent);
     color: var(--c-accent);
     margin: 0 4px 4px 0;
     cursor: pointer;
+    transition: all ease-in-out .2s;
 }
 
 input[type=submit]:focus,
 input[type=submit]:focus-visible,
-input[type=submit]:active,
+input[type=submit]:hover,
 button:focus,
 button:focus-visible,
+button:hover {
+    transition: all ease-in-out .2s;
+    border: none;
+    box-shadow: 2px 2px 1px 1px var(--c-accent);
+    margin: 2px;
+}
+
+input[type=submit]:active,
 button:active {
+    transition: all ease-in-out .2s;
     border: none;
     box-shadow: none;
     margin: 4px 0 0 4px;
