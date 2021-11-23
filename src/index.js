@@ -13,7 +13,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => res.render('index'))
-app.get('/form/:data', (req, res) => res.render('form'))
+app.get('/form/:querydata?', (req, res) => res.render('form', req.params))
 
 app.get('/api/qrcode', async (req, res) => {
     const errors = []
