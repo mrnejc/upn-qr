@@ -30,13 +30,11 @@ div {
     row-gap: .5rem;
     column-gap: 1rem;
 }
-.form > div:last-child {
-    grid-column-end: -1;
-}
 .code {
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
+    background-image: url("/public/invalid-content.png");
     margin: 2rem;
 }
 .card {
@@ -81,17 +79,25 @@ div {
                     <input value="<%= val %>" <%= readonly %> type="<%= i.t %>" placeholder="<%= i.p %>" name="<%= i.n %>">
                 </div>
             <% } %>
-            <div>
+            <!-- <div>
                 <input type="submit" value="Update details" id="update-details">
-            </div>
+            </div> -->
         </div>
     </div>
 </body>
 <script>
-const btn = document.getElementById("update-details")
+const inputs = document.getElementsByTagName("input")
 const qrcode = document.getElementById("qrcode")
 function val (name) {
     return document.getElementsByName(name)?.[0]?.value || ""
+}
+let debounce = null
+function updateQRdeb () {
+    clearTimeout(debounce)
+    debounce = setTimeout(() => {
+        clearTimeout(debounce)
+        updateQR()
+    }, 500);
 }
 function updateQR (e) {
     const qstring = [
@@ -107,9 +113,14 @@ function updateQR (e) {
         ["issuer_address", val("issuer-address")],
         ["issuer_city", val("issuer-city")],
     ].map(v => `${v[0]}=${v[1]}`).join("&")
-    qrcode.style.setProperty('background-image', `url("/api/qrcode?${qstring}"), url("/public/invalid-content.png")`)
+    const newurl = `/api/qrcode?${qstring}`
+    const preloadImg = new Image();
+    preloadImg.addEventListener("load", () => qrcode.style.setProperty('background-image', `url("${newurl}"), url("/public/invalid-content.png")`))
+    preloadImg.src=newurl;
 }
-btn.addEventListener("click", updateQR)
+for (el of inputs) {
+    el.addEventListener("input", updateQRdeb)
+}
 
 updateQR()
 </script>
