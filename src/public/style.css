@@ -29,7 +29,7 @@ html {
     padding: 0 0;
     width: 100vw;
     display: grid;
-    grid-template-columns: auto minmax(50vw, 650px) auto;
+    grid-template-columns: auto minmax(50vw, 850px) auto;
     background-color: var(--c-dark);
 }
 
