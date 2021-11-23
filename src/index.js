@@ -28,14 +28,14 @@ app.get('/api/qrcode', async (req, res) => {
         }
     }
 
-    check('client_name', /^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i)
+    check('client_name', /^[a-zA-Z0-9ČŠŽĐ'](?:[A-Z0-9 ČŠŽĐ']{0,31}[A-Z0-9ČŠŽĐ'])?$/i)
     check('client_address', /^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i)
     check('client_city', /^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i)
     check('amount', /^(?=.{11}$)[0]{1,11}[0-9]{0,11}$/)
     check('payment_purpose', /^[A-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,40}[A-Z0-9ČŠŽĐ])?$/i)
     check('iban', /^[A-Z]{2}\d{17}$/)
     check('reference', /^[A-Z]{2}[0-9\-]{1,24}$/)
-    check('issuer_name', /^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i)
+    check('issuer_name', /^[a-zA-Z0-9ČŠŽĐ'](?:[A-Z0-9 ČŠŽĐ']{0,31}[A-Z0-9ČŠŽĐ'])?$/i)
     check('issuer_address', /^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i)
     check('issuer_city', /^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i)
 
