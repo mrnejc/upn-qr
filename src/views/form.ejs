@@ -28,7 +28,7 @@ div {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     row-gap: .5rem;
-    column-gap: .5rem;
+    column-gap: 1rem;
 }
 .form > div:last-child {
     grid-column-end: -1;
@@ -37,69 +37,49 @@ div {
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
+    margin: 2rem;
 }
 .card {
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-template-rows: auto auto;
 }
-.title { grid-row: 1; grid-column: span 2; }
+.title { grid-row: 1; grid-column: 1 / -1; }
 .code { grid-row: 2; grid-column: 1; }
-.form { grid-row: 2; grid-column: 2; }
+.form { grid-row: 2; grid-column: 2 / -1; }
 </style>
 <body>
     <div class="card">
         <div class="title">
-            <h1>Form: <%= query["form-title"] %></h1>
+            <h1>Form: <%= q["title"] %></h1>
             <span>Create your form here: <a href="/#maker">/#maker</a></span>
         </div>
-        <!-- <pre><%= query ? JSON.stringify(query, null, 2) : "query: None" %></pre> -->
         <div class="code" id="qrcode">
         </div>
         <div class="form">
-            <div>
-                <label for="form-client-name">Client name</label>
-                <input value="<%= query["form-client-name"] %>" <%= query["form-client-name"] ? "readonly" : "" %> type="text" placeholder="Peter Novak" name="form-client-name">
-            </div>
-            <div>
-                <label for="form-client-address">Client address</label>
-                <input value="<%= query["form-client-address"] %>" <%= query["form-client-address"] ? "readonly" : "" %> type="text" placeholder="Ravna ulica 13 a" name="form-client-address">
-            </div>
-            <div>
-                <label for="form-client-city">Client city</label>
-                <input value="<%= query["form-client-city"] %>" <%= query["form-client-city"] ? "readonly" : "" %> type="text" placeholder="1000 Ljubljana" name="form-client-city">
-            </div>
-            <div>
-                <label for="form-amount">Amount</label>
-                <input value="<%= query["form-amount"] %>" <%= query["form-amount"] ? "readonly" : "" %> type="number" placeholder="00000001132" name="form-amount">
-            </div>
-            <div>
-                <label for="form-code">Purpose code</label>
-                <input value="<%= query["form-code"] %>" <%= query["form-code"] ? "readonly" : "" %> type="text" placeholder="OTHR" name="form-code">
-            </div>
-            <div>
-                <label for="form-purpose">Payment purpose</label>
-                <input value="<%= query["form-purpose"] %>" <%= query["form-purpose"] ? "readonly" : "" %> type="text" placeholder="moutain bike first half" name="form-purpose">
-            </div>
-            <div>
-                <label for="form-iban">IBAN</label>
-                <input value="<%= query["form-iban"] %>" <%= query["form-iban"] ? "readonly" : "" %> type="text" placeholder="SI56047500000280672" name="form-iban">
-            </div>
-            <div>
-                <label for="form-reference">Reference</label>
-                <input value="<%= query["form-reference"] %>" <%= query["form-reference"] ? "readonly" : "" %> type="text" placeholder="SI121234567890120" name="form-reference">
-            </div>
-            <div>
-                <label for="form-issuer-name">Issuer name</label>
-                <input value="<%= query["form-issuer-name"] %>" <%= query["form-issuer-name"] ? "readonly" : "" %> type="text" placeholder="Spletne strani na 123" name="form-issuer-name">
-            </div>
-            <div>
-                <label for="form-issuer-address">Issuer address</label>
-                <input value="<%= query["form-issuer-address"] %>" <%= query["form-issuer-address"] ? "readonly" : "" %> type="text" placeholder="Za deveto smreko 15 k" name="form-issuer-address">
-            </div>
-            <div>
-                <label for="form-issuer-city">Issuer city</label>
-                <input value="<%= query["form-issuer-city"] %>" <%= query["form-issuer-city"] ? "readonly" : "" %> type="text" placeholder="1000 Ljubljana" name="form-issuer-city">
-            </div>
+            <%
+            const items = [
+                { n: "client-name",     d: "Client name",       p: "Peter Novak",               t: "text" },
+                { n: "client-address",  d: "Client address",    p: "Ravna Ulica 13",            t: "text" },
+                { n: "client-city",     d: "Client city",       p: "1000 Ljubljana",            t: "text" },
+                { n: "issuer-name",     d: "Issuer name",       p: "Spletne strani n'123",      t: "text" },
+                { n: "issuer-address",  d: "Issuer address",    p: "Za deveto smreko 15 k",     t: "text" },
+                { n: "issuer-city",     d: "Issuer city",       p: "1000 Ljubljana",            t: "text" },
+                { n: "iban",            d: "IBAN",              p: "SI56047500000280672",       t: "text" },
+                { n: "amount",          d: "Amount",            p: "00000001050",               t: "number" },
+                { n: "code",            d: "Code",              p: "OTHR",                      t: "text" },
+                { n: "purpose",         d: "Purpose",           p: "moutain bike first half",   t: "text" },
+                { n: "reference",       d: "Reference",         p: "SI121234567890120",         t: "text" }
+            ]
+            for (i of items) {
+                const str = String(q[i.n])
+                const readonly = (str != "" && !str.includes("*") ? "readonly" : "")
+                const val = str.replace("*", "")
+            %>
+                <div>
+                    <label for="<%= i.n %>"><%= i.d %></label>
+                    <input value="<%= val %>" <%= readonly %> type="<%= i.t %>" placeholder="<%= i.p %>" name="<%= i.n %>">
+                </div>
+            <% } %>
             <div>
                 <input type="submit" value="Update details" id="update-details">
             </div>
@@ -113,20 +93,20 @@ function val (name) {
     return document.getElementsByName(name)?.[0]?.value || ""
 }
 function updateQR (e) {
-    const querystring = [
-        ["client_name", val("form-client-name")],
-        ["client_address", val("form-client-address")],
-        ["client_city", val("form-client-city")],
-        ["amount", val("form-amount")],
-        ["purpose_code", val("form-code")],
-        ["payment_purpose", val("form-purpose")],
-        ["iban", val("form-iban")],
-        ["reference", val("form-reference")],
-        ["issuer_name", val("form-issuer-name")],
-        ["issuer_address", val("form-issuer-address")],
-        ["issuer_city", val("form-issuer-city")],
+    const qstring = [
+        ["client_name", val("client-name")],
+        ["client_address", val("client-address")],
+        ["client_city", val("client-city")],
+        ["amount", val("amount")],
+        ["purpose_code", val("code")],
+        ["payment_purpose", val("purpose")],
+        ["iban", val("iban")],
+        ["reference", val("reference")],
+        ["issuer_name", val("issuer-name")],
+        ["issuer_address", val("issuer-address")],
+        ["issuer_city", val("issuer-city")],
     ].map(v => `${v[0]}=${v[1]}`).join("&")
-    qrcode.style.setProperty('background-image', `url("/api/qrcode?${querystring}")`)
+    qrcode.style.setProperty('background-image', `url("/api/qrcode?${qstring}")`)
 }
 btn.addEventListener("click", updateQR)
 

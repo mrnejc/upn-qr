@@ -47,52 +47,52 @@ section div {
         <span>Fill in the fields with static information and leave empty the ones that the user has to fill out.</span>
         <form action="/form" method="get" class="maker">
             <div>
-                <label for="form-title">Form title</label>
-                <input type="text" placeholder="First half of the bike" name="form-title">
+                <label for="title">Form title</label>
+                <input type="text" placeholder="First half of the bike" name="title">
             </div>
             <div>
-                <label for="form-client-name">Client name</label>
-                <input type="text" placeholder="Peter Novak" name="form-client-name">
+                <label for="client-name">Client name</label>
+                <input type="text" placeholder="Peter Novak" name="client-name">
             </div>
             <div>
-                <label for="form-client-address">Client address</label>
-                <input type="text" placeholder="Ravna ulica 13 a" name="form-client-address">
+                <label for="client-address">Client address</label>
+                <input type="text" placeholder="Ravna ulica 13 a" name="client-address">
             </div>
             <div>
-                <label for="form-client-city">Client city</label>
-                <input type="text" placeholder="1000 Ljubljana" name="form-client-city">
+                <label for="client-city">Client city</label>
+                <input type="text" placeholder="1000 Ljubljana" name="client-city">
             </div>
             <div>
-                <label for="form-amount">Amount</label>
-                <input type="number" placeholder="00000001132" name="form-amount">
+                <label for="amount">Amount</label>
+                <input type="number" placeholder="00000001132" name="amount">
             </div>
             <div>
-                <label for="form-code">Purpose code</label>
-                <input type="text" placeholder="OTHR" name="form-code">
+                <label for="code">Purpose code</label>
+                <input type="text" placeholder="OTHR" name="code">
             </div>
             <div>
-                <label for="form-purpose">Payment purpose</label>
-                <input type="text" placeholder="moutain bike first half" name="form-purpose">
+                <label for="purpose">Payment purpose</label>
+                <input type="text" placeholder="moutain bike first half" name="purpose">
             </div>
             <div>
-                <label for="form-iban">IBAN</label>
-                <input type="text" placeholder="SI56047500000280672" name="form-iban">
+                <label for="iban">IBAN</label>
+                <input type="text" placeholder="SI56047500000280672" name="iban">
             </div>
             <div>
-                <label for="form-reference">Reference</label>
-                <input type="text" placeholder="SI121234567890120" name="form-reference">
+                <label for="reference">Reference</label>
+                <input type="text" placeholder="SI121234567890120" name="reference">
             </div>
             <div>
-                <label for="form-issuer-name">Issuer name</label>
-                <input type="text" placeholder="Spletne strani na 123" name="form-issuer-name">
+                <label for="issuer-name">Issuer name</label>
+                <input type="text" placeholder="Spletne strani na 123" name="issuer-name">
             </div>
             <div>
-                <label for="form-issuer-address">Issuer address</label>
-                <input type="text" placeholder="Za deveto smreko 15 k" name="form-issuer-address">
+                <label for="issuer-address">Issuer address</label>
+                <input type="text" placeholder="Za deveto smreko 15 k" name="issuer-address">
             </div>
             <div>
-                <label for="form-issuer-city">Issuer city</label>
-                <input type="text" placeholder="1000 Ljubljana" name="form-issuer-city">
+                <label for="issuer-city">Issuer city</label>
+                <input type="text" placeholder="1000 Ljubljana" name="issuer-city">
             </div>
             <div>
                 <input type="submit" value="Create form">
@@ -175,9 +175,9 @@ section div {
             
             <h5 id="api-qrcode-payment_purpose"><a href="#api-qrcode-payment_purpose">&#128279;</a> <code>payment_purpose</code></h5>
             <div>
-                <span>Regex: <code>^[A-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,40}[A-Z0-9ČŠŽĐ])?$</code></span>
+                <span>Regex: <code>^[A-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ\-:;_'"]{0,40}[A-Z0-9ČŠŽĐ])?$</code></span>
                 <br>
-                <span>Demo: <a href="https://regex101.com/r/y7kUXP/1">regex101.com/r/y7kUXP/1</a></span>
+                <span>Demo: <a href="https://regex101.com/r/egl24t/1">regex101.com/r/egl24t/1</a></span>
                 <br>
                 <span>Description: A Can contain any character including ŠČŽĐ and space. Max length 33 characters including space.</span>
                 <br>
