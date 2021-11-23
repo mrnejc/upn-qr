@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UPN-QR :: FORM</title>
+    <link rel="stylesheet" href="/public/style.css">
 </head>
-<%- include('../template/style.ejs') -%>
 <style>
 
 div {
@@ -53,8 +53,7 @@ div {
             <h1>Form: <%= q["title"] %></h1>
             <span>Create your form here: <a href="/#maker">/#maker</a></span>
         </div>
-        <div class="code" id="qrcode">
-        </div>
+        <div class="code" id="qrcode"></div>
         <div class="form">
             <%
             const items = [

@@ -1,14 +1,28 @@
-<style>
 body,
 html {
     margin: 0;
     padding: 0;
     max-width: 100vw;
     overflow-x: hidden;
-    --c-dark: #202124;
-    --c-darkish: #303134;
-    --c-primary: #e8eaed;
-    --c-accent: #C58AF9;
+    --c-dark-val: 32, 33, 36;
+    --c-darkish-val: 48, 49, 52;
+    --c-primary-val: 232, 234, 237;
+    --c-accent-val: 197, 138, 249;
+
+    --c-dark: rgb(var(--c-dark-val));
+    --c-darkish: rgb(var(--c-darkish-val));
+    --c-primary: rgb(var(--c-primary-val));
+    --c-accent: rgb(var(--c-accent-val));
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+::-moz-selection,
+::selection {
+    background: rgba(var(--c-accent-val), .5);
 }
 
 html {
@@ -52,19 +66,20 @@ pre {
     overflow-x: scroll;
 }
 input {
-    background-color: var(--c-darkish);
+    background-color: var(--c-dark);
     border-color: var(--c-dark);
     color: var(--c-primary);
     padding: 8px 8px 6px 10px;
     border-radius: 4px;
     font-family: monospace;
+    outline: none;
 }
 input:read-only {
     cursor: default;
-    background-color: var(--c-dark);
+    background-color: var(--c-darkish);
 }
-input:focus,
-input:focus-visible {
+input:focus:not(:readonly),
+input:focus-visible:not(:readonly) {
     border-color: transparent;
     outline: solid 1px var(--c-accent);
 }
@@ -105,4 +120,3 @@ button:active {
     box-shadow: none;
     margin: 4px 0 0 4px;
 }
-</style>

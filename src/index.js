@@ -9,6 +9,8 @@ const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 app.use(cors())
+app.use('/public', express.static('public'))
+
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
