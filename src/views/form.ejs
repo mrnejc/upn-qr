@@ -105,7 +105,7 @@ function updateQR (e) {
         ["issuer_address", val("issuer-address")],
         ["issuer_city", val("issuer-city")],
     ].map(v => `${v[0]}=${v[1]}`).join("&")
-    qrcode.style.setProperty('background-image', `url("/api/qrcode?${qstring}")`)
+    qrcode.style.setProperty('background-image', `url("/api/qrcode?${qstring}"), url("/public/invalid-content.png")`)
 }
 btn.addEventListener("click", updateQR)
 
