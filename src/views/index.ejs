@@ -19,6 +19,15 @@ section div {
     justify-content: center;
     text-align: center;
 }
+.maker {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    row-gap: .5rem;
+    column-gap: .5rem;
+}
+.maker > div:last-child {
+    grid-column-end: -1;
+}
 </style>
 <body>
     <section>
@@ -35,13 +44,62 @@ section div {
     </section>
     <section>
         <h1 id="maker"><a href="#maker">&#128279;</a> Form maker</h1>
-        <div class="maker">
+        <span>Fill in the fields with static information and leave empty the ones that the user has to fill out.</span>
+        <form action="/form" method="get" class="maker">
             <div>
-
+                <label for="maker-form-title">Form title</label>
+                <input type="text" placeholder="First half of the bike" name="maker-form-title">
+            </div>
+            <div>
+                <label for="maker-form-client-name">Client name</label>
+                <input type="text" placeholder="Peter Novak" name="maker-form-client-name">
+            </div>
+            <div>
+                <label for="maker-form-client-address">Client address</label>
+                <input type="text" placeholder="Ravna ulica 13 a" name="maker-form-client-address">
+            </div>
+            <div>
+                <label for="maker-form-client-city">Client city</label>
+                <input type="text" placeholder="1000 Ljubljana" name="maker-form-client-city">
+            </div>
+            <div>
+                <label for="maker-form-amount">Amount</label>
+                <input type="number" placeholder="00000001132" name="maker-form-amount">
+            </div>
+            <div>
+                <label for="maker-form-code">Purpose code</label>
+                <input type="text" placeholder="OTHR" name="maker-form-code">
+            </div>
+            <div>
+                <label for="maker-form-purpose">Payment purpose</label>
+                <input type="text" placeholder="moutain bike first half" name="maker-form-purpose">
+            </div>
+            <div>
+                <label for="maker-form-iban">IBAN</label>
+                <input type="number" placeholder="SI56047500000280672" name="maker-form-iban">
+            </div>
+            <div>
+                <label for="maker-form-reference">Reference</label>
+                <input type="text" placeholder="SI121234567890120" name="maker-form-reference">
+            </div>
+            <div>
+                <label for="maker-form-issuer-name">Issuer name</label>
+                <input type="text" placeholder="Spletne strani na 123" name="maker-form-issuer-name">
+            </div>
+            <div>
+                <label for="maker-form-issuer-address">Issuer address</label>
+                <input type="text" placeholder="Za deveto smreko 15 k" name="maker-form-issuer-address">
+            </div>
+            <div>
+                <label for="maker-form-issuer-city">Issuer city</label>
+                <input type="text" placeholder="1000 Ljubljana" name="maker-form-issuer-city">
+            </div>
+            <div>
+                <input type="submit" value="Create form">
             </div>
         </div>
-
-
+    </section>
+    <section>
         <h1 id="api"><a href="#api">&#128279;</a> API</h1>
         <h4 id="api-qrcode"><a href="#api-qrcode">&#128279;</a> <code>GET /api/qrcode</code></h4>
         <div>
