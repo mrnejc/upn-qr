@@ -9,6 +9,11 @@ const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 app.use(cors())
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+
+app.get('/', (req, res) => res.render('index'))
+app.get('/form/:data', (req, res) => res.render('form'))
 
 app.get('/api/qrcode', async (req, res) => {
     const errors = []
@@ -80,8 +85,5 @@ ${String(req.query.issuer_city).toUpperCase()}`
     res.end(img)
 
 })
-
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')))
-app.get('/style.css', (req, res) => res.sendFile(path.join(__dirname, 'style.css')))
 
 app.listen(process.env.PORT || 80, () => console.log(`UPN-QR started on port ${process.env.PORT || 80}`))
