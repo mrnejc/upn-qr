@@ -20,6 +20,15 @@ html {
     user-select: none;
 }
 
+textarea,
+input,
+code {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
 ::-moz-selection,
 ::selection {
     background: rgba(var(--c-accent-val), .5);
