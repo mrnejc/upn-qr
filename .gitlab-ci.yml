@@ -7,7 +7,7 @@ deploy:
   tags:
     - exec-docker
   script:
-    - apk add nodejs~=17 npm git
+    - apk add nodejs npm git
     - npm install --global caprover
     - caprover deploy --caproverUrl $GITAPP_URL --appToken $GITAPP_TOKEN --appName $GITAPP_NAME --branch origin/master
   only:
