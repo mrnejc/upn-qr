@@ -35,6 +35,12 @@ div {
     column-gap: 1rem;;
 }
 .code {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    row-gap: 1rem;
+}
+.code {
     background-size: contain;
     background-position: top center;
     background-repeat: no-repeat;
@@ -67,7 +73,7 @@ div {
                 { n: "issuer-address",  d: "Issuer address",    p: "Za deveto smreko 15 k",     t: "text" },
                 { n: "issuer-city",     d: "Issuer city",       p: "1000 Ljubljana",            t: "text" },
                 { n: "iban",            d: "IBAN",              p: "SI56047500000280672",       t: "text" },
-                { n: "amount",          d: "Amount",            p: "00000001050",               t: "number" },
+                { n: "amount",          d: "Amount",            p: "35090 (350.90€)",               t: "number" },
                 { n: "code",            d: "Code",              p: "OTHR",                      t: "text" },
                 { n: "purpose",         d: "Purpose",           p: "moutain bike first half",   t: "text" },
                 { n: "reference",       d: "Reference",         p: "SI121234567890120",         t: "text" }
@@ -91,11 +97,8 @@ div {
     </div>
 </body>
 <script>
-const inputs = document.getElementsByTagName("input")
 const qrcode = document.getElementById("qrcode")
-function val (name) {
-    return document.getElementsByName(name)?.[0]?.value || ""
-}
+function val (name) { return document.getElementsByName(name)?.[0]?.value || "" }
 let debounce = null
 function updateQRdeb () {
     clearTimeout(debounce)
@@ -104,23 +107,26 @@ function updateQRdeb () {
         updateQR()
     }, 500);
 }
+function getNewUrl () {
+    const qstring = [
+        ["client_name", val("client-name")],
+        ["client_address", val("client-address")],
+        ["client_city", val("client-city")],
+        ["amount", val("amount").padStart(11, "0")],
+        ["purpose_code", val("code")],
+        ["payment_purpose", val("purpose")],
+        ["iban", val("iban")],
+        ["reference", val("reference")],
+        ["issuer_name", val("issuer-name")],
+        ["issuer_address", val("issuer-address")],
+        ["issuer_city", val("issuer-city")],
+    ].map(v => `${v[0]}=${v[1]}`).join("&")
+    return `${window.location.origin}/api/qrcode?${qstring}`
+}
 function updateQR (e) {
     try {
-        const qstring = [
-            ["client_name", val("client-name")],
-            ["client_address", val("client-address")],
-            ["client_city", val("client-city")],
-            ["amount", val("amount")],
-            ["purpose_code", val("code")],
-            ["payment_purpose", val("purpose")],
-            ["iban", val("iban")],
-            ["reference", val("reference")],
-            ["issuer_name", val("issuer-name")],
-            ["issuer_address", val("issuer-address")],
-            ["issuer_city", val("issuer-city")],
-        ].map(v => `${v[0]}=${v[1]}`).join("&")
-        const newurl = `/api/qrcode?${qstring}`
         const preloadImg = new Image();
+        const newurl = getNewUrl()
         preloadImg.addEventListener("load", () => qrcode.style.setProperty('background-image', `url("${newurl}"), url("/public/invalid-content.png")`))
         preloadImg.addEventListener("error", () => qrcode.style.setProperty('background-image', `url("/public/invalid-content.png")`))
         preloadImg.src=newurl;
@@ -128,7 +134,9 @@ function updateQR (e) {
         setImgUrl(`url("/public/invalid-content.png")`)
     }
 }
-for (el of inputs) {
+
+// Add input listener to all inputs
+for (el of document.getElementsByTagName("input")) {
     el.addEventListener("input", updateQRdeb)
 }
 

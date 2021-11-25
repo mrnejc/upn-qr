@@ -75,7 +75,8 @@ pre {
 pre {
     overflow-x: scroll;
 }
-input {
+input,
+button {
     background-color: var(--c-dark);
     border-color: var(--c-dark);
     color: var(--c-primary);
@@ -84,12 +85,17 @@ input {
     font-family: monospace;
     outline: none;
 }
-input:read-only {
+button {
+    background-color: var(--c-darkish)
+}
+input:read-only,
+button:disabled {
     cursor: default;
     background-color: var(--c-darkish);
 }
-input:focus:not(:readonly),
-input:focus-visible:not(:readonly) {
+input:focus:not(:read-only),
+input:focus-visible:not(:read-only),
+button:focus:not(:disabled) {
     border-color: transparent;
     outline: solid 1px var(--c-accent);
 }
@@ -100,11 +106,12 @@ input[type=number] {
 
 input[type=submit],
 button {
+    --box-shadow-color: var(--c-accent);
     border: none;
     outline: solid 1px var(--c-accent);
     padding: 10px;
     vertical-align: top;
-    box-shadow: 4px 4px 1px 1px var(--c-accent);
+    box-shadow: 4px 4px 1px 1px var(--box-shadow-color);
     color: var(--c-accent);
     margin: 0 4px 4px 0;
     cursor: pointer;
@@ -119,7 +126,7 @@ button:focus-visible,
 button:hover {
     transition: all ease-in-out .2s;
     border: none;
-    box-shadow: 2px 2px 1px 1px var(--c-accent);
+    box-shadow: 2px 2px 1px 1px var(--box-shadow-color);
     margin: 2px;
 }
 
@@ -129,4 +136,14 @@ button:active {
     border: none;
     box-shadow: none;
     margin: 4px 0 0 4px;
+}
+button.success {
+    color: #6cc070;
+    outline-color: #6cc070;
+    --box-shadow-color: #6cc070;
+}
+button.error {
+    color: #ff6633;
+    outline-color: #ff6633;
+    --box-shadow-color: #ff6633;
 }

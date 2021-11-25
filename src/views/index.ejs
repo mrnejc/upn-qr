@@ -25,9 +25,8 @@ section div {
     row-gap: .5rem;
     column-gap: .5rem;
 }
-.maker > div:last-child {
-    grid-column-end: -1;
-}
+.maker > div:nth-last-child(1) { grid-column-end: -1; }
+.maker > div:nth-last-child(2) { grid-column-end: -2; }
 </style>
 <body>
     <section>
@@ -64,7 +63,7 @@ section div {
             </div>
             <div>
                 <label for="amount">Amount</label>
-                <input type="number" placeholder="00000001132" name="amount">
+                <input type="number" placeholder="00000001132" min="0" max="99999999999" name="amount">
             </div>
             <div>
                 <label for="code">Purpose code</label>
@@ -95,10 +94,61 @@ section div {
                 <input type="text" placeholder="1000 Ljubljana" name="issuer-city">
             </div>
             <div>
+                <button id="copyurl" type="button">Copy URL</button>
+            </div>
+            <div>
                 <input type="submit" value="Create form">
             </div>
         </div>
     </section>
+<script>
+function val (name) { return document.getElementsByName(name)?.[0]?.value || "" }
+function getNewUrl () {
+    const qstring = [
+        ["client_name", val("client-name")],
+        ["client_address", val("client-address")],
+        ["client_city", val("client-city")],
+        ["amount", val("amount").padStart(11, "0")],
+        ["purpose_code", val("code")],
+        ["payment_purpose", val("purpose")],
+        ["iban", val("iban")],
+        ["reference", val("reference")],
+        ["issuer_name", val("issuer-name")],
+        ["issuer_address", val("issuer-address")],
+        ["issuer_city", val("issuer-city")],
+    ].map(v => `${v[0]}=${v[1]}`).join("&")
+    return `${window.location.origin}/api/qrcode?${qstring}`
+}
+const copyBtn = document.getElementById("copyurl")
+copyBtn.addEventListener("click", () => copyUrl())
+function copyUrl () {
+    try {
+        const dummy = document.createElement('input')
+        document.body.appendChild(dummy)
+        dummy.value = getNewUrl()
+        dummy.select()
+        document.execCommand('copy')
+        document.body.removeChild(dummy)
+
+        copyBtn.innerText = "Copied!"
+        copyBtn.classList.add("success")
+        setTimeout(() => {
+            copyBtn.innerText = "Copy URL"
+            copyBtn.classList.remove("success")
+        }, 750)
+
+    } catch (error) {
+        console.error(error)
+        copyBtn.innerText = "Failed!"
+        copyBtn.classList.add("error")
+        setTimeout(() => {
+            copyBtn.innerText = "Copy URL"
+            copyBtn.classList.remove("error")
+        }, 750)
+
+    }
+}
+</script>
     <section>
         <h1 id="api"><a href="#api">&#128279;</a> API</h1>
         <h4 id="api-qrcode"><a href="#api-qrcode">&#128279;</a> <code>GET /api/qrcode</code></h4>
