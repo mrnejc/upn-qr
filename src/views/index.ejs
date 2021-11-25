@@ -94,7 +94,7 @@ section div {
                 <input type="text" placeholder="1000 Ljubljana" name="issuer-city">
             </div>
             <div>
-                <button id="copyurl" type="button">Copy URL</button>
+                <button id="copyurl" type="button">Copy image URL</button>
             </div>
             <div>
                 <input type="submit" value="Create form">
@@ -133,7 +133,7 @@ function copyUrl () {
         copyBtn.innerText = "Copied!"
         copyBtn.classList.add("success")
         setTimeout(() => {
-            copyBtn.innerText = "Copy URL"
+            copyBtn.innerText = "Copy image URL"
             copyBtn.classList.remove("success")
         }, 750)
 
@@ -142,7 +142,7 @@ function copyUrl () {
         copyBtn.innerText = "Failed!"
         copyBtn.classList.add("error")
         setTimeout(() => {
-            copyBtn.innerText = "Copy URL"
+            copyBtn.innerText = "Copy image URL"
             copyBtn.classList.remove("error")
         }, 750)
 
