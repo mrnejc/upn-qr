@@ -105,23 +105,28 @@ function updateQRdeb () {
     }, 500);
 }
 function updateQR (e) {
-    const qstring = [
-        ["client_name", val("client-name")],
-        ["client_address", val("client-address")],
-        ["client_city", val("client-city")],
-        ["amount", val("amount")],
-        ["purpose_code", val("code")],
-        ["payment_purpose", val("purpose")],
-        ["iban", val("iban")],
-        ["reference", val("reference")],
-        ["issuer_name", val("issuer-name")],
-        ["issuer_address", val("issuer-address")],
-        ["issuer_city", val("issuer-city")],
-    ].map(v => `${v[0]}=${v[1]}`).join("&")
-    const newurl = `/api/qrcode?${qstring}`
-    const preloadImg = new Image();
-    preloadImg.addEventListener("load", () => qrcode.style.setProperty('background-image', `url("${newurl}"), url("/public/invalid-content.png")`))
-    preloadImg.src=newurl;
+    try {
+        const qstring = [
+            ["client_name", val("client-name")],
+            ["client_address", val("client-address")],
+            ["client_city", val("client-city")],
+            ["amount", val("amount")],
+            ["purpose_code", val("code")],
+            ["payment_purpose", val("purpose")],
+            ["iban", val("iban")],
+            ["reference", val("reference")],
+            ["issuer_name", val("issuer-name")],
+            ["issuer_address", val("issuer-address")],
+            ["issuer_city", val("issuer-city")],
+        ].map(v => `${v[0]}=${v[1]}`).join("&")
+        const newurl = `/api/qrcode?${qstring}`
+        const preloadImg = new Image();
+        preloadImg.addEventListener("load", () => qrcode.style.setProperty('background-image', `url("${newurl}"), url("/public/invalid-content.png")`))
+        preloadImg.addEventListener("error", () => qrcode.style.setProperty('background-image', `url("/public/invalid-content.png")`))
+        preloadImg.src=newurl;
+    } catch (error) {
+        setImgUrl(`url("/public/invalid-content.png")`)
+    }
 }
 for (el of inputs) {
     el.addEventListener("input", updateQRdeb)
