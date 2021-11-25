@@ -21,7 +21,7 @@ html {
 }
 
 textarea,
-input,
+input:not([type=submit]),
 pre,
 code {
     -webkit-user-select: text;
