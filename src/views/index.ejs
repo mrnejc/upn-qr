@@ -39,11 +39,11 @@ section div {
     </section>
     <section>
         <h1>Terms of usage</h1>
-        <p>Because The Bank Association in Slovenia <a href="https://www.gov.si/zbirke/storitve/vkljucitev-v-izdajanje-upn-s-kodo-qr/" target="_blank">prohibits</a> the printing and use of UPN-QR codes on bills by any unauthorized party, you must be <a href="https://www.upn-qr.si/sl/registracija-izdajatelja">authorized</a> in order to use this application to generate a QR code and print it. You can use this API freely to create QR codes and send them in a digital form.</p>
+        <p>Because The Bank Association of Slovenia <a href="https://www.gov.si/zbirke/storitve/vkljucitev-v-izdajanje-upn-s-kodo-qr/" target="_blank">prohibits</a> the printing and use of UPN-QR codes on bills by any unauthorized party, you must be <a href="https://www.upn-qr.si/sl/registracija-izdajatelja">authorized</a> in order to use this application to generate a QR code and print it.</p>
     </section>
     <section>
         <h1 id="maker"><a href="#maker">&#128279;</a> Form maker</h1>
-        <span>Fill in the fields with static information and leave empty the ones that the user has to fill out.</span>
+        <span>Fill in the fields with reciever's bank information and leave empty the ones that user has to fill out.</span>
         <form action="/form" method="get" class="maker">
             <div>
                 <label for="title">Form title</label>
@@ -71,7 +71,7 @@ section div {
             </div>
             <div>
                 <label for="purpose">Payment purpose</label>
-                <input type="text" placeholder="moutain bike first half" name="purpose">
+                <input type="text" placeholder="Moutain bike first half" name="purpose">
             </div>
             <div>
                 <label for="iban">IBAN</label>
@@ -83,7 +83,7 @@ section div {
             </div>
             <div>
                 <label for="issuer-name">Issuer name</label>
-                <input type="text" placeholder="Spletne strani na 123" name="issuer-name">
+                <input type="text" placeholder="Kolesarstvo Hrib" name="issuer-name">
             </div>
             <div>
                 <label for="issuer-address">Issuer address</label>
@@ -157,9 +157,9 @@ function copyUrl () {
             <br>
             <pre>
 &#x3C;!-- Meant to be used as direct image source, for example --&#x3E;
-&#x3C;img src="https://upn-qr.gitapp.si/api/qrcode?client_name=Šolski center Nova Gorica&client_address=Cankarjeva ulica 8a&client_city=5000 Nova Gorica&amount=00000001000&payment_purpose=placilo&iban=SI56020170014356205&reference=SI121234567890120&issuer_name=Hitre Spletne Strani Na 123&issuer_address=Namisljena ulica 1a&issuer_city=1000 Ljubljana"&#x3E;
+&#x3C;img src="https://upn-qr.gitapp.si/api/qrcode?client_name=Dobri človek&client_address=Kristanova ulica 1&client_city=1000 Ljubljana&amount=00000001000&payment_purpose=Donacija&iban=SI56021400015556761&reference=SI99&issuer_name=Slovenska Karitas&issuer_address=Kristanova ulica 1&issuer_city=1000 Ljubljana"&#x3E;
             </pre>
-            <img src="/api/qrcode?client_name=Šolski center Nova Gorica&client_address=Cankarjeva ulica 8a&client_city=5000 Nova Gorica&amount=00000001000&payment_purpose=placilo&iban=SI56020170014356205&reference=SI121234567890120&issuer_name=Hitre Spletne Strani Na 123&issuer_address=Namisljena ulica 1a&issuer_city=1000 Ljubljana">
+            <img src="/api/qrcode?client_name=Dobri človek&client_address=Kristanova ulica 1&client_city=1000 Ljubljana&amount=00000001000&payment_purpose=Donacija&iban=SI56021400015556761&reference=SI99&issuer_name=Slovenska Karitas&issuer_address=Kristanova ulica 1&issuer_city=1000 Ljubljana">
         </div>
         <br>
         
@@ -229,9 +229,9 @@ function copyUrl () {
                 <br>
                 <span>Demo: <a href="https://regex101.com/r/egl24t/1">regex101.com/r/egl24t/1</a></span>
                 <br>
-                <span>Description: A Can contain any character including ŠČŽĐ and space. Max length 33 characters including space.</span>
+                <span>Description: Can contain any character including ŠČŽĐ and space. Max length 33 characters including space.</span>
                 <br>
-                <span>Example: moutain bike first half</span>
+                <span>Example: Moutain bike first half</span>
             </div>
             
             <h5 id="api-qrcode-iban"><a href="#api-qrcode-iban">&#128279;</a> <code>iban</code></h5>
@@ -251,7 +251,7 @@ function copyUrl () {
                 <br>
                 <span>Demo: <a href="https://regex101.com/r/2tSYMw/1">regex101.com/r/2tSYMw/1</a></span>
                 <br>
-                <span>Description: Must contain reference model (exp. SI00) and reference (1234-2002). Max length 4+22 numbers and minus symbols. No spaces allowed.</span>
+                <span>Description: Must contain reference model (exp. SI00) and reference (exp. 1234-2002). Max length 4+22 numbers and minus symbols. No spaces allowed. Reference model and structure must comply with <a href="https://www.nlb.si/navodila-upn">standard reference model.</a></span>
                 <br>
                 <span>Example: SI121234567890120</span>
             </div>
@@ -264,7 +264,7 @@ function copyUrl () {
                 <br>
                 <span>Description: Name and surname of the issuer or company name. Max length 33 characters including spaces and numbers.</span>
                 <br>
-                <span>Example: Spletne strani na 123</span>
+                <span>Example: Kolesarstvo Hrib</span>
             </div>
             
             <h5 id="api-qrcode-issuer_address"><a href="#api-qrcode-issuer_address">&#128279;</a> <code>issuer_address</code></h5>
