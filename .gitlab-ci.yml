@@ -1,0 +1,16 @@
+build-oci:
+  stage: build
+  image: registry.gitplac.si/cts/build-oci:1.0.3
+  script: [ "/build.sh" ]
+  variables:
+      CTS_BUILD_DOCKERFILE: Dockerfile
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+      variables:
+        CTS_BUILD_TAG: latest
+    - if: $CI_COMMIT_TAG != null
+      variables:
+        CTS_BUILD_TAG: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+      variables:
+        CTS_BUILD_TAG: $CI_COMMIT_SHORT_SHA
