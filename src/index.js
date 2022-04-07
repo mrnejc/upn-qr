@@ -15,6 +15,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => res.render('index'))
+app.get('/healthcheck', (req, res) => res.send({ ok: true, pod: process.env.POD_NAME }))
 app.get('/form', (req, res) => res.render('form', { q: req.query }))
 
 app.get('/api/qrcode', async (req, res) => {

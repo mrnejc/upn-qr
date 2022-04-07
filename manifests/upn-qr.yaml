@@ -21,6 +21,23 @@ spec:
       - name: upn-qr-ct
         image: registry.gitplac.si/aljaxus/upn-qr
         imagePullPolicy: Always
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        readinessProbe:
+          httpGet:
+            path: "/healthcheck"
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: "/healthcheck"
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 20
         ports:
         - containerPort: 80
 
