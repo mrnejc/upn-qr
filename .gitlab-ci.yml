@@ -14,3 +14,25 @@ build-oci:
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
       variables:
         CTS_BUILD_TAG: $CI_COMMIT_SHORT_SHA
+
+deploy:
+  stage: deploy
+  needs: ["build-oci"]
+  resource_group: deploy-to-prod
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: [""]
+  environment:
+    name: production
+  variables:
+    WAIT: "false"
+    # IF FORCE true, NOW MUST BE false
+    FORCE: "true"
+    NOW: "false"
+    TIMEOUT: "300s"
+  script:
+  - kubectl config use-context aljaxus/upn-qr:upn-qr-agent
+  - kubectl delete --force=$FORCE --wait=$WAIT --now=$NOW --ignore-not-found=true --timeout=$TIMEOUT -f ./manifests/upn-qr.yaml
+  - kubectl create -f ./manifests/upn-qr.yaml
+  rules:
+  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH

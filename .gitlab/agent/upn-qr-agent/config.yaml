@@ -1,0 +1,6 @@
+gitops:
+  manifest_projects:
+  - id: aljaxus/upn-qr
+    default_namespace: aljaxus-upn-qr
+    paths:
+    - glob: '/manifests/*.{yaml,yml,json}'
