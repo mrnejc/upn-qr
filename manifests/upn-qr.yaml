@@ -42,7 +42,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: upn-qr-
+  name: upn-qr-ings
   namespace: aljaxus-upn-qr
 spec:
   rules:
