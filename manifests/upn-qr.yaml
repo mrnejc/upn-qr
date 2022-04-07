@@ -7,6 +7,9 @@ metadata:
     app: upn-qr
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: upn-qr
   template:
     metadata:
       labels:
