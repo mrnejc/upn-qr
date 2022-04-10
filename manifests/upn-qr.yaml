@@ -64,6 +64,8 @@ kind: Ingress
 metadata:
   name: upn-qr-ings
   namespace: aljaxus-upn-qr
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   rules:
   - host: upn-qr.gitapp.si
@@ -76,3 +78,8 @@ spec:
             name: upn-qr-svc
             port:
               number: 80
+  tls:
+  - secretName: ingress-tls-cert
+    hosts:
+    - upn-qr.gitapp.si
+
