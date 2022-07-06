@@ -102,7 +102,7 @@ section div {
         </div>
     </section>
 <script>
-function val (name) { return document.getElementsByName(name)?.[0]?.value || "" }
+function val (name) { return encodeURIComponent(document.getElementsByName(name)?.[0]?.value) || "" }
 function getNewUrl () {
     const qstring = [
         ["client_name", val("client-name")],
@@ -117,7 +117,7 @@ function getNewUrl () {
         ["issuer_address", val("issuer-address")],
         ["issuer_city", val("issuer-city")],
     ].map(v => `${v[0]}=${v[1]}`).join("&")
-    return `${window.location.origin}/api/qrcode?${qstring}`
+    return encodeURI(`${window.location.origin}/api/qrcode?${qstring}`)
 }
 const copyBtn = document.getElementById("copyurl")
 copyBtn.addEventListener("click", () => copyUrl())
@@ -136,7 +136,6 @@ function copyUrl () {
             copyBtn.innerText = "Copy image URL"
             copyBtn.classList.remove("success")
         }, 750)
-
     } catch (error) {
         console.error(error)
         copyBtn.innerText = "Failed!"
@@ -145,7 +144,6 @@ function copyUrl () {
             copyBtn.innerText = "Copy image URL"
             copyBtn.classList.remove("error")
         }, 750)
-
     }
 }
 </script>

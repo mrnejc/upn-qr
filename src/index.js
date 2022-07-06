@@ -24,7 +24,7 @@ app.get('/api/qrcode', async (req, res) => {
     function check (name, rgxp) {
         if (!req.query[name]) errors.push(`${name} is required`)
         else {
-            req.query[name] = String(req.query[name]).trim()
+            req.query[name] = decodeURIComponent(String(req.query[name])).trim()
             if (!String(req.query[name]).match(rgxp)) {
                 errors.push(`${name} does not match the required format`)
             }
@@ -35,7 +35,7 @@ app.get('/api/qrcode', async (req, res) => {
     check('client_address', /^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i)
     check('client_city', /^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i)
     check('amount', /^(?=.{11}$)[0]{1,11}[0-9]{0,11}$/)
-    check('payment_purpose', /^[A-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ\-:;_'"]{0,40}[A-Z0-9ČŠŽĐ])?$/i)
+    check('payment_purpose', /^.{1,42}$/i)
     check('iban', /^[A-Z]{2}\d{17}$/)
     check('reference', /^[A-Z]{2}[0-9\-]{1,24}$/)
     check('issuer_name', /^[a-zA-Z0-9ČŠŽĐ'](?:[A-Z0-9 ČŠŽĐ']{0,31}[A-Z0-9ČŠŽĐ'])?$/i)
