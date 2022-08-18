@@ -38,7 +38,7 @@ app.get('/api/qrcode', async (req, res) => {
     check('payment_purpose', /^.{1,42}$/i)
     check('iban', /^[A-Z]{2}\d{17}$/)
     check('reference', /^[A-Z]{2}[0-9\-]{1,24}$/)
-    check('issuer_name', /^[a-zA-Z0-9ČŠŽĐ'](?:[A-Z0-9 ČŠŽĐ']{0,31}[A-Z0-9ČŠŽĐ'])?$/i)
+    check('issuer_name', /^[a-zA-Z0-9ČŠŽĐ.'](?:[A-Z0-9 ČŠŽĐ.']{0,31}[A-Z0-9ČŠŽĐ.'])?$/i)
     check('issuer_address', /^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i)
     check('issuer_city', /^[a-zA-Z0-9ČŠŽĐ](?:[A-Z0-9 ČŠŽĐ]{0,31}[A-Z0-9ČŠŽĐ])?$/i)
 

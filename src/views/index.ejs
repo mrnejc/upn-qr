@@ -25,8 +25,6 @@ section div {
     row-gap: .5rem;
     column-gap: .5rem;
 }
-.maker > div:nth-last-child(1) { grid-column-end: -1; }
-.maker > div:nth-last-child(2) { grid-column-end: -2; }
 </style>
 <body>
     <section>
@@ -93,6 +91,7 @@ section div {
                 <label for="issuer-city">Issuer city</label>
                 <input type="text" placeholder="1000 Ljubljana" name="issuer-city">
             </div>
+            <div class="code" id="qrcode"></div>
             <div>
                 <button id="copyurl" type="button">Copy image URL</button>
             </div>
@@ -146,6 +145,36 @@ function copyUrl () {
         }, 750)
     }
 }
+
+
+const qrcode = document.getElementById("qrcode")
+function val (name) { return document.getElementsByName(name)?.[0]?.value || "" }
+let debounce = null
+function updateQRdeb () {
+    clearTimeout(debounce)
+    debounce = setTimeout(() => {
+        clearTimeout(debounce)
+        updateQR()
+    }, 500);
+}
+function updateQR (e) {
+    try {
+        const preloadImg = new Image();
+        const newurl = getNewUrl()
+        preloadImg.addEventListener("load", () => qrcode.style.setProperty('background-image', `url("${newurl}"), url("/public/invalid-content.png")`))
+        preloadImg.addEventListener("error", () => qrcode.style.setProperty('background-image', `url("/public/invalid-content.png")`))
+        preloadImg.src=newurl;
+    } catch (error) {
+        setImgUrl(`url("/public/invalid-content.png")`)
+    }
+}
+
+// Add input listener to all inputs
+for (el of document.getElementsByTagName("input")) {
+    el.addEventListener("input", updateQRdeb)
+}
+
+updateQR()
 </script>
     <section>
         <h1 id="api"><a href="#api">&#128279;</a> API</h1>
@@ -256,9 +285,9 @@ function copyUrl () {
             
             <h5 id="api-qrcode-issuer_name"><a href="#api-qrcode-issuer_name">&#128279;</a> <code>issuer_name</code></h5>
             <div>
-                <span>Regex: <code>^[a-zA-Z0-9ČŠŽĐ'](?:[A-Z0-9 ČŠŽĐ']{0,31}[A-Z0-9ČŠŽĐ'])?$/i</code></span>
+                <span>Regex: <code>^[a-zA-Z0-9ČŠŽĐ.'](?:[A-Z0-9 ČŠŽĐ.']{0,31}[A-Z0-9ČŠŽĐ.'])?$/i</code></span>
                 <br>
-                <span>Demo: <a href="https://regex101.com/r/JW7Ywq/1">regex101.com/r/JW7Ywq/1</a></span>
+                <span>Demo: <a href="https://regex101.com/r/ubDgZL/1">regex101.com/r/ubDgZL/1</a></span>
                 <br>
                 <span>Description: Name and surname of the issuer or company name. Max length 33 characters including spaces and numbers.</span>
                 <br>
