@@ -35,4 +35,6 @@ deploy:
   - kubectl delete --force=$FORCE --wait=$WAIT --now=$NOW --ignore-not-found=true --timeout=$TIMEOUT -f ./manifests/upn-qr.yaml
   - kubectl create -f ./manifests/upn-qr.yaml
   rules:
-  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH == "aljaxus/upn-qr"
+    when: on_success
+  - when: manual
