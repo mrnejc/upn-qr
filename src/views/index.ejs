@@ -81,6 +81,10 @@ section div {
                 <input type="number" placeholder="00000001132" min="0" max="99999999999" name="amount">
             </div>
             <div>
+                <label for="deadline">Rok plačila</label>
+                <input type="text" placeholder="01.02.2034" min=0 max=10 name="deadline">
+            </div>
+            <div>
                 <label for="code">Purpose code</label>
                 <input type="text" placeholder="OTHR" name="code">
             </div>
@@ -132,6 +136,7 @@ function getNewUrl () {
         ["issuer_name", val("issuer-name")],
         ["issuer_address", val("issuer-address")],
         ["issuer_city", val("issuer-city")],
+        ["deadline", val("deadline")],
     ].map(v => `${v[0]}=${v[1]}`).join("&")
     return encodeURI(`${window.location.origin}/api/qrcode?${qstring}`)
 }
@@ -201,9 +206,9 @@ updateQR()
             <br>
             <pre>
 &#x3C;!-- Meant to be used as direct image source, for example --&#x3E;
-&#x3C;img src="https://upn-qr.gitapp.si/api/qrcode?client_name=Dobri človek&client_address=Kristanova ulica 1&client_city=1000 Ljubljana&amount=00000001000&payment_purpose=Donacija&iban=SI56021400015556761&reference=SI99&issuer_name=Slovenska Karitas&issuer_address=Kristanova ulica 1&issuer_city=1000 Ljubljana"&#x3E;
+&#x3C;img src="https://upn-qr.gitapp.si/api/qrcode?client_name=Dobri človek&client_address=Kristanova ulica 1&client_city=1000 Ljubljana&amount=00000001000&deadline=01.02.2034&payment_purpose=Donacija&iban=SI56021400015556761&reference=SI99&issuer_name=Slovenska Karitas&issuer_address=Kristanova ulica 1&issuer_city=1000 Ljubljana"&#x3E;
             </pre>
-            <img src="/api/qrcode?client_name=Dobri človek&client_address=Kristanova ulica 1&client_city=1000 Ljubljana&amount=00000001000&payment_purpose=Donacija&iban=SI56021400015556761&reference=SI99&issuer_name=Slovenska Karitas&issuer_address=Kristanova ulica 1&issuer_city=1000 Ljubljana">
+            <img src="/api/qrcode?client_name=Dobri človek&client_address=Kristanova ulica 1&client_city=1000 Ljubljana&amount=00000001000&deadline=01.02.2034&payment_purpose=Donacija&iban=SI56021400015556761&reference=SI99&issuer_name=Slovenska Karitas&issuer_address=Kristanova ulica 1&issuer_city=1000 Ljubljana">
         </div>
         <br>
         
@@ -252,6 +257,17 @@ updateQR()
                 <span>Description: Total amount to pay. Must contain 11 numbers. Last two numbers are decimal places (cents).</span>
                 <br>
                 <span>Example (11,32€): 00000001132</span>
+            </div>
+
+            <h5 id="api-qrcode-deadline"><a href="#api-qrcode-deadline">&#128279;</a> <code>deadline</code></h5>
+            <div>
+                <span>Regex: <code>^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$</code></span>
+                <br>
+                <span>Demo: <a href="https://regex101.com/r/JDZT9P/1">regex101.com/r/JDZT9P/1</a></span>
+                <br>
+                <span>Description: Payment deadline. Field is optional. Format DD.MM.YYYY</span>
+                <br>
+                <span>Example: 01.02.2034</span>
             </div>
             
             <h5 id="api-qrcode-purpose_code"><a href="#api-qrcode-purpose_code">&#128279;</a> <code>purpose_code</code></h5>

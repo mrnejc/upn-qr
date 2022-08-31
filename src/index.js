@@ -45,10 +45,18 @@ app.get('/api/qrcode', async (req, res) => {
     // SET DEFAULT PURPOSE_CODE
     if (!req.query.purpose_code) req.query.purpose_code = "OTHR"
     else {
-        req.query.amount = String(req.query.amount).trim()
         if (!String(req.query.purpose_code).match(/^[A-Z]{4}$/)) {
             errors.push("purpose_code does not match the required format")
         }
+    }
+
+    // DEADLINE is optional
+    if (req.query.deadline ) {
+        if(!String(req.query.deadline).match(/^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/)) {
+            errors.push("deadline does not match the required format")
+        }
+    } else {
+        req.query.deadline = ""
     }
 
     if (errors.length > 0) return res.status(400).send({
@@ -69,7 +77,7 @@ ${req.query.amount}
 
 ${String(req.query.purpose_code).toUpperCase()}
 ${String(req.query.payment_purpose).toUpperCase()}
-
+${req.query.deadline}
 ${req.query.iban}
 ${req.query.reference}
 ${String(req.query.issuer_name).toUpperCase()}
