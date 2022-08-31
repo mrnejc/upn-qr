@@ -1,10 +1,10 @@
-FROM alpine
+FROM node:14
 
-WORKDIR /home
+WORKDIR /var/src
 
-RUN apk add nodejs yarn
-
-COPY src/ /home/
+COPY src/package.json src/yarn.lock /var/src/
 RUN yarn install
+
+COPY src /var/src
 
 CMD [ "yarn", "run", "start" ]
