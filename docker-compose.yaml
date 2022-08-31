@@ -1,22 +1,23 @@
-version: 3.8
+version: "3.8"
 
 services:
-  image: node:14
-  build:
-    context: ./
-    dockerfile: Dockerfile
-  command: ["yarn", "run", "dev"]
-  environment:
-    ENV: development
-    NODE_ENV: development
-  volumes:
-    - ./src:/var/src
-    - /var/src/node_modules
-  ports: 
-    - 8080:80
-  healthcheck:
-    test: ["CMD", "curl", "-sSG", "http://localhost/healthcheck"]
-    interval: 30s
-    timeout: 10s
-    retries: 3
-    start_period: 15s
+  app:
+    image: node:14
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: ["yarn", "run", "dev"]
+    environment:
+      ENV: development
+      NODE_ENV: development
+    volumes:
+      - ./src:/var/src
+      - /var/src/node_modules
+    ports: 
+      - 8080:80
+    healthcheck:
+      test: ["CMD", "curl", "-sSG", "http://localhost/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
