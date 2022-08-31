@@ -1,9 +1,19 @@
-<div align="center">
-
 # upn-qr
-
-A public API for generating UPN-QR codes on the fly
 
 https://upn-qr.gitapp.si
 
-</div>
+## Local development
+
+**requirements:**
+
+* Docker
+* Docker-compose
+
+
+The local devserver is accessible via http://localhost:8080
+
+```bash
+docker-compose up
+```
+
+
