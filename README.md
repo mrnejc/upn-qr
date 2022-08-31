@@ -2,16 +2,18 @@
 
 https://upn-qr.gitapp.si
 
-## run in docker for local development
+## Local development
 
-Build and run in docker (image *upn-qr:dev, container name *unp-qr*), https://localhost:8080/
+**requirements:**
 
-    docker stop upn-qr
-    docker rm upn-qr
-    docker image rm upn-qr:dev
-    docker build --tag upn-qr:dev . && docker run -d -p 8080:80 --name upn-qr upn-qr:dev
-    docker logs -f upn-qr
+* Docker
+* Docker-compose
 
-or as one-liner
 
-    docker stop upn-qr; docker rm upn-qr; docker image rm upn-qr:dev; docker build --tag upn-qr:dev . && docker run -d -p 8088:80 --name upn-qr upn-qr:dev && docker logs -f upn-qr
+The local devserver is accessible via http://localhost:8080
+
+```bash
+docker-compose up
+```
+
+
